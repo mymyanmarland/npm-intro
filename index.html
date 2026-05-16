@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>npm အကြောင်း အသေးစိတ် လေ့လာခြင်း</title>
+    
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/white.css" id="theme">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (Padauk for Burmese) -->
+    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS for better Burmese typography and Modern Design */
+        body {
+            font-family: 'Pyidaungsu', 'Padauk', sans-serif;
+            background-color: #f4f6f8;
+        }
+        .reveal {
+            font-family: 'Pyidaungsu', 'Padauk', sans-serif;
+            font-size: 40px; /* Slightly larger base font size */
+        }
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: 'Pyidaungsu', 'Padauk', sans-serif;
+            text-transform: none;
+            font-weight: 700;
+            color: #333;
+        }
+        .reveal h1 { font-size: 2.2em; }
+        .reveal h2 { font-size: 1.6em; color: #cb3837; } /* npm red color */
+        .reveal p, .reveal li {
+            line-height: 1.6;
+            color: #555;
+            font-size: 0.95em;
+        }
+        .reveal ul {
+            display: block;
+            text-align: left;
+            margin-left: 10%;
+        }
+        .reveal li {
+            margin-bottom: 15px;
+        }
+        /* Custom Highlight Colors */
+        .highlight { color: #cb3837; font-weight: bold; }
+        .blue-text { color: #02569B; font-weight: bold; }
+        
+        /* Modern Cards */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid #cb3837;
+        }
+        
+        /* Code snippet styling */
+        .code-box {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8em;
+            text-align: left;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            margin-top: 20px;
+        }
+        .code-box .cmd { color: #e5c07b; }
+        .code-box .keyword { color: #c678dd; }
+
+        /* Cover Slide Style */
+        .cover-slide {
+            background: linear-gradient(135deg, #fce4e4 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 50px !important;
+            box-shadow: 0 15px 35px rgba(203, 56, 55, 0.15);
+        }
+        .icon-large {
+            font-size: 2.5em;
+            color: #cb3837;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Cover -->
+            <section class="cover-slide" data-transition="zoom">
+                <i class="fab fa-npm icon-large" style="font-size: 4em;"></i>
+                <h1>npm ဆိုတာ ဘာလဲ?</h1>
+                <p>Node Package Manager အကြောင်း အသေးစိတ်လေ့လာခြင်း</p>
+                <div style="margin-top: 50px; font-size: 0.7em; color: #777;">
+                    <p><i class="fas fa-chalkboard-teacher"></i> ပြီးပြည့်စုံသော လမ်းညွှန် (Slide ၃၀)</p>
+                </div>
+            </section>
+
+            <!-- Slide 2 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-info-circle"></i> npm ရဲ့ အရှည်ကောက်</h2>
+                <p>npm ဆိုတာ <span class="highlight">Node Package Manager</span> ရဲ့ အတိုကောက်ဖြစ်ပါတယ်။</p>
+                <ul>
+                    <li class="fragment fade-up">Node.js အတွက် အဓိက သုံးတဲ့ Package Manager တစ်ခုပါ။</li>
+                    <li class="fragment fade-up">JavaScript Code တွေကို အလွယ်တကူ မျှဝေနိုင်၊ ပြန်လည်အသုံးပြုနိုင်အောင် ဖန်တီးထားတာဖြစ်ပါတယ်။</li>
+                    <li class="fragment fade-up">ကမ္ဘာပေါ်မှာ အကြီးမားဆုံး Software Registry (ဒေတာဘေ့စ်ကြီး) တစ်ခုလည်း ဖြစ်ပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 3 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-history"></i> npm ရဲ့ သမိုင်းကြောင်း</h2>
+                <ul>
+                    <li class="fragment">၂၀၁၀ ခုနှစ်မှာ <b>Isaac Z. Schlueter</b> ဆိုသူက စတင်ဖန်တီးခဲ့ပါတယ်။</li>
+                    <li class="fragment">Node.js developer တွေ သူတို့ရေးထားတဲ့ code တွေကို အလွယ်တကူ share နိုင်ဖို့ ရည်ရွယ်ခဲ့တာပါ။</li>
+                    <li class="fragment">ယနေ့ခေတ်မှာတော့ Front-end (React, Vue, Angular) နဲ့ Back-end (Node.js) အားလုံးအတွက် မရှိမဖြစ် လိုအပ်တဲ့ Tools တစ်ခုဖြစ်လာပါပြီ။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 4 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-question-circle"></i> ဘာကြောင့် npm ကို သုံးတာလဲ?</h2>
+                <p>Code တွေကို အစကနေ ပြန်ရေးနေစရာ မလိုတော့ပါဘူး။</p>
+                <ul>
+                    <li class="fragment">တခြား Developer တွေ ရေးသားထားပြီးသား Code (Package) တွေကို ကိုယ့် Project ထဲ အလွယ်တကူ ထည့်သွင်းအသုံးပြုနိုင်ဖို့။</li>
+                    <li class="fragment">Project တစ်ခုမှာ ပါဝင်တဲ့ Code တွေရဲ့ Version တွေကို စနစ်တကျ စီမံခန့်ခွဲနိုင်ဖို့။</li>
+                    <li class="fragment">Project ကို လွယ်ကူစွာ Update လုပ်နိုင်ဖို့နဲ့ Share နိုင်ဖို့ ဖြစ်ပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 5 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-box-open"></i> Package ဆိုတာ ဘာလဲ?</h2>
+                <p>Package ဆိုတာ <span class="blue-text">Code အစုအဝေး (သို့) Directory တစ်ခု</span> ဖြစ်ပါတယ်။</p>
+                <ul>
+                    <li class="fragment">၎င်းထဲမှာ JavaScript ဖိုင်တွေနဲ့ အလုပ်လုပ်ပုံကို ညွှန်ပြတဲ့ <code>package.json</code> ဖိုင် တစ်ခု ပါဝင်ပါတယ်။</li>
+                    <li class="fragment">ဥပမာ - Date တွေကို တွက်ချက်ပေးတဲ့ Package, Form တွေကို စစ်ဆေးပေးတဲ့ Package စသဖြင့် အလုပ်တစ်ခုစီအတွက် သီးသန့်ရေးထားတဲ့ Code အစုအဝေးတွေပါ။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 6 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-cubes"></i> Module ဆိုတာ ဘာလဲ?</h2>
+                <p>Node.js မှာ `require()` ဒါမှမဟုတ် `import` သုံးပြီး ခေါ်ယူနိုင်တဲ့ JavaScript ဖိုင်တိုင်းကို Module လို့ခေါ်ပါတယ်။</p>
+                <ul>
+                    <li class="fragment">Package တစ်ခုမှာ Module တစ်ခု (သို့) အများကြီး ပါဝင်နိုင်ပါတယ်။</li>
+                    <li class="fragment">npm ကနေ ဒေါင်းလုပ်ဆွဲလိုက်တဲ့ Package တိုင်းဟာ ကိုယ့် Project အတွက် Module တွေအဖြစ် အလုပ်လုပ်ပေးပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 7 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-sitemap"></i> npm ရဲ့ အဓိက အစိတ်အပိုင်း ၃ ခု</h2>
+                <p>npm ကို အဓိက အပိုင်း ၃ ပိုင်းနဲ့ ဖွဲ့စည်းထားပါတယ် -</p>
+                <ol>
+                    <li class="fragment highlight">The Website (ဝဘ်ဆိုဒ်)</li>
+                    <li class="fragment highlight">The Registry (ဒေတာဘေ့စ်)</li>
+                    <li class="fragment highlight">The CLI (Command Line Interface)</li>
+                </ol>
+            </section>
+
+            <!-- Slide 8 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-globe"></i> ၁. The Website (npm ဝဘ်ဆိုဒ်)</h2>
+                <p><b>npmjs.com</b> ဆိုတာ npm ရဲ့ တရားဝင် ဝဘ်ဆိုဒ်ဖြစ်ပါတယ်။</p>
+                <ul>
+                    <li class="fragment">အဲဒီမှာ ကိုယ်လိုအပ်တဲ့ Package တွေကို ရှာဖွေ (Search) နိုင်ပါတယ်။</li>
+                    <li class="fragment">Package တွေရဲ့ Documentation (အသုံးပြုနည်း လမ်းညွှန်) တွေကို ဖတ်ရှုနိုင်ပါတယ်။</li>
+                    <li class="fragment">Developer တွေက သူတို့ရဲ့ Profile တွေကို စီမံခန့်ခွဲနိုင်ပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 9 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-database"></i> ၂. The Registry</h2>
+                <p>Registry ဆိုတာ <span class="highlight">ဧရာမ Database ကြီး</span> တစ်ခုပါ။</p>
+                <ul>
+                    <li class="fragment">ကမ္ဘာတစ်ဝှမ်းက Developer တွေ ရေးသားထားတဲ့ Open-source JavaScript Package ပေါင်း သန်းနဲ့ချီပြီး သိမ်းဆည်းထားတဲ့ နေရာဖြစ်ပါတယ်။</li>
+                    <li class="fragment">ကျွန်တော်တို့ <code>npm install</code> လို့ ရိုက်လိုက်တဲ့အခါ၊ ဒီ Registry ကြီးထဲကနေ Code တွေကို လှမ်းဆွဲယူတာ ဖြစ်ပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 10 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-terminal"></i> ၃. The CLI (Command Line Interface)</h2>
+                <p>CLI ဆိုတာ Terminal (သို့) Command Prompt ကနေ စာသားတွေရိုက်ပြီး အသုံးပြုရတဲ့ စနစ်ပါ။</p>
+                <ul>
+                    <li class="fragment">Developer အများစုက CLI ကိုပဲ အဓိက သုံးကြပါတယ်။</li>
+                    <li class="fragment">Package တွေကို သွင်းတာ (Install)၊ ဖြုတ်တာ (Uninstall)၊ အဆင့်မြှင့်တာ (Update) တွေကို CLI ကနေတစ်ဆင့် ခိုင်းစေရပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 11 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fab fa-node-js"></i> Node.js နဲ့ npm ဆက်စပ်မှု</h2>
+                <p>npm ဟာ Node.js နဲ့အတူ အလိုအလျောက် ပါလာပါတယ်။</p>
+                <ul>
+                    <li class="fragment">ကွန်ပျူတာမှာ Node.js ကို Install လုပ်လိုက်တာနဲ့ npm ကိုပါ တပါတည်း ရရှိမှာဖြစ်ပါတယ်။</li>
+                    <li class="fragment">သီးသန့်ကြီး npm ကို သွားရောက် Install လုပ်နေစရာ မလိုပါဘူး။</li>
+                </ul>
+                <div class="fragment code-box">
+                    // Version စစ်ဆေးရန်<br>
+                    <span class="cmd">node -v</span><br>
+                    <span class="cmd">npm -v</span>
+                </div>
+            </section>
+
+            <!-- Slide 12 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-file-code"></i> package.json ဆိုတာ ဘာလဲ?</h2>
+                <p>Project တစ်ခုရဲ့ <span class="blue-text">မှတ်ပုံတင် (သို့) နှလုံးသား</span> လို့ တင်စားလို့ရပါတယ်။</p>
+                <ul>
+                    <li class="fragment">Project အမည်၊ Version၊ ဖန်တီးသူ စတဲ့ အချက်အလက်တွေ ပါဝင်ပါတယ်။</li>
+                    <li class="fragment">အရေးအကြီးဆုံးကတော့ Project အတွက် အသုံးပြုထားတဲ့ <b>Package တွေရဲ့ စာရင်းနဲ့ Version တွေ</b> ကို မှတ်သားထားပေးတဲ့ ဖိုင်ဖြစ်ပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 13 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-star"></i> package.json ရဲ့ အရေးပါပုံ</h2>
+                <ul>
+                    <li class="fragment">တခြားသူကို Project ပေးတဲ့အခါ Code တွေအကုန် (node_modules) ထည့်ပေးစရာ မလိုတော့ပါဘူး။</li>
+                    <li class="fragment">ဒီ <code>package.json</code> ဖိုင်လေး ပါသွားရုံနဲ့ တခြားသူက <code>npm install</code> ရိုက်လိုက်တာနဲ့ လိုအပ်တဲ့ Package တွေ အလိုအလျောက် ရောက်လာမှာပါ။</li>
+                    <li class="fragment">ဒါဟာ Project size ကို သေးငယ်စေပြီး မျှဝေရ လွယ်ကူစေပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 14 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-play"></i> npm init ဖြင့် Project စတင်ခြင်း</h2>
+                <p>Project အသစ်တစ်ခု စတင်တိုင်း <code>package.json</code> ဖိုင်ကို ဖန်တီးဖို့ လိုပါတယ်။</p>
+                <div class="code-box fragment">
+                    <span class="cmd">npm init</span><br><br>
+                    <span style="color:#777;">// မေးခွန်းတွေ မဖြေချင်ဘဲ အလိုအလျောက် ဖန်တီးချင်ရင်</span><br>
+                    <span class="cmd">npm init -y</span>
+                </div>
+                <p class="fragment" style="margin-top: 15px;">ဒီ Command ကို ရိုက်လိုက်တာနဲ့ <code>package.json</code> ဖိုင်လေး ထွက်ပေါ်လာပါမယ်။</p>
+            </section>
+
+            <!-- Slide 15 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-download"></i> npm install ဆိုတာ ဘာလဲ?</h2>
+                <p>Registry ကနေ Package တွေကို ကိုယ့်စက်ထဲ ထည့်သွင်းတဲ့ Command ပါ။</p>
+                <div class="code-box fragment">
+                    <span class="cmd">npm install package_name</span><br>
+                    <span style="color:#777;">// အတိုကောက် အနေဖြင့်</span><br>
+                    <span class="cmd">npm i package_name</span>
+                </div>
+                <ul>
+                    <li class="fragment">ဥပမာ React ကို သွင်းချင်ရင် <code>npm install react</code> လို့ ရိုက်ရပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 16 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-folder"></i> Local vs Global Installation</h2>
+                <p>Package တွေကို ထည့်သွင်းရာမှာ အဓိက နည်းလမ်း ၂ မျိုး ရှိပါတယ်။</p>
+                <ul>
+                    <li class="fragment"><span class="highlight">Local:</span> လက်ရှိ လုပ်နေတဲ့ Project Folder ထဲမှာပဲ အလုပ်လုပ်တာပါ။</li>
+                    <li class="fragment"><span class="highlight">Global:</span> ကွန်ပျူတာ တစ်ခုလုံး နေရာတကာကနေ လှမ်းသုံးလို့ရအောင် ထည့်သွင်းတာပါ။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 17 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-home"></i> Local Installation အကြောင်း</h2>
+                <ul>
+                    <li class="fragment">ပုံမှန် <code>npm install package_name</code> လို့ ရိုက်ရင် Local အနေနဲ့ ဝင်ပါတယ်။</li>
+                    <li class="fragment">Package တွေဟာ Project Folder ထဲက <code>node_modules</code> ဆိုတဲ့ Folder ထဲကို ရောက်သွားပါတယ်။</li>
+                    <li class="fragment">အဲ့ဒီ Project အတွက်ပဲ သီးသန့် အသုံးပြုလို့ ရမှာ ဖြစ်ပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 18 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-globe-americas"></i> Global Installation အကြောင်း</h2>
+                <ul>
+                    <li class="fragment">Command line tool တွေလိုမျိုး နေရာတိုင်းက သုံးချင်တဲ့အခါ Global သွင်းရပါတယ်။</li>
+                    <li class="fragment">ဥပမာ <code>nodemon</code> လိုမျိုး tool တွေပါ။</li>
+                </ul>
+                <div class="code-box fragment">
+                    <span style="color:#777;">// -g ကို ထည့်ရေးရပါတယ်။</span><br>
+                    <span class="cmd">npm install -g nodemon</span>
+                </div>
+            </section>
+
+            <!-- Slide 19 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-link"></i> Dependencies ဆိုတာ ဘာလဲ?</h2>
+                <p>ကိုယ့် Project အလုပ်လုပ်ဖို့ <span class="highlight">မရှိမဖြစ် မှီခိုနေရတဲ့</span> Package တွေကို Dependencies လို့ ခေါ်ပါတယ်။</p>
+                <ul>
+                    <li class="fragment">ဥပမာ Web Server ရေးဖို့ <code>express</code> ကို သုံးထားတယ်ဆိုရင် <code>express</code> ဟာ Dependency ပါ။</li>
+                    <li class="fragment"><code>npm install</code> လုပ်တဲ့အခါ <code>package.json</code> ထဲက "dependencies" အောက်မှာ မှတ်သားသွားပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 20 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-tools"></i> DevDependencies ဆိုတာ ဘာလဲ?</h2>
+                <p>Code ရေးနေစဉ် (Development) အချိန်မှာပဲ လိုအပ်ပြီး၊ တကယ့် Website လွှင့်တဲ့အချိန် (Production) မှာ မလိုအပ်တဲ့ Package တွေပါ။</p>
+                <ul>
+                    <li class="fragment">ဥပမာ Code တွေကို အလိုအလျောက် format ချပေးတဲ့ <code>prettier</code> လိုမျိုး Package တွေ ဖြစ်ပါတယ်။</li>
+                </ul>
+                <div class="code-box fragment">
+                    <span class="cmd">npm install prettier --save-dev</span><br>
+                    <span style="color:#777;">// (သို့) npm i prettier -D</span>
+                </div>
+            </section>
+
+            <!-- Slide 21 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-lock"></i> package-lock.json ဆိုတာ ဘာလဲ?</h2>
+                <p><code>npm install</code> လုပ်လိုက်တာနဲ့ အလိုအလျောက် ထွက်လာတဲ့ ဖိုင်တစ်ခုပါ။</p>
+                <ul>
+                    <li class="fragment"><code>package.json</code> က Version အကြမ်းဖျင်းကို မှတ်ပြီး၊ <code>package-lock.json</code> ကတော့ သွင်းလိုက်တဲ့ <span class="highlight">Version အတိအကျကို Lock ချပေးထားတာပါ</span>။</li>
+                    <li class="fragment">ဒါမှသာ တခြားစက်မှာ Run တဲ့အခါ Version မကိုက်ညီတဲ့ ပြဿနာကို ရှောင်လွှဲနိုင်မှာ ဖြစ်ပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 22 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-sync-alt"></i> npm update လုပ်နည်း</h2>
+                <p>မိမိသွင်းထားတဲ့ Package တွေ Version အသစ်ထွက်လာတဲ့အခါ အလွယ်တကူ Update လုပ်နိုင်ပါတယ်။</p>
+                <div class="code-box fragment">
+                    <span style="color:#777;">// Package တစ်ခုတည်းကို Update လုပ်ရန်</span><br>
+                    <span class="cmd">npm update package_name</span><br><br>
+                    <span style="color:#777;">// Project ထဲက Package အားလုံးကို Update လုပ်ရန်</span><br>
+                    <span class="cmd">npm update</span>
+                </div>
+            </section>
+
+            <!-- Slide 23 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-trash-alt"></i> npm uninstall လုပ်နည်း</h2>
+                <p>မလိုချင်တော့တဲ့ Package တွေကို Project ထဲကနေ ပြန်ဖျက်ထုတ်ချင်တဲ့အခါ အသုံးပြုပါတယ်။</p>
+                <div class="code-box fragment">
+                    <span class="cmd">npm uninstall package_name</span>
+                </div>
+                <ul>
+                    <li class="fragment">ဒီလိုရိုက်လိုက်တာနဲ့ <code>node_modules</code> ထဲကရော၊ <code>package.json</code> စာရင်းထဲကပါ အလိုအလျောက် ပျောက်သွားမှာ ဖြစ်ပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 24 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-code-branch"></i> Semantic Versioning (SemVer)</h2>
+                <p>npm မှာ Package တွေရဲ့ Version တွေကို နံပါတ် ၃ လုံး (ဥပမာ <span class="highlight">1.4.2</span>) နဲ့ သတ်မှတ်ပါတယ်။ ဒါကို SemVer လို့ခေါ်ပါတယ်။</p>
+                <ul>
+                    <li class="fragment"><b>1</b> (Major): အပြောင်းအလဲကြီးမားပြီး ယခင် Code တွေနဲ့ အဆင်မပြေနိုင်တော့တဲ့ အခြေအနေ။</li>
+                    <li class="fragment"><b>4</b> (Minor): Feature အသစ်တွေ ထပ်ထည့်ထားပေမယ့် ယခင် Code တွေ ပျက်မသွားတဲ့ အခြေအနေ။</li>
+                    <li class="fragment"><b>2</b> (Patch): Bug (အမှား) လေးတွေကို ပြင်ဆင်ထားတဲ့ အခြေအနေ။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 25 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-caret-up"></i> ^ နှင့် ~ သင်္ကေတများ</h2>
+                <p>package.json ထဲမှာ Version တွေရဲ့ အရှေ့မှာ သင်္ကေတလေးတွေ တွေ့ရတတ်ပါတယ်။</p>
+                <ul>
+                    <li class="fragment"><b>^ (Caret)</b>: Minor နဲ့ Patch version အသစ်ထွက်ရင် လက်ခံမယ်။ ဥပမာ <code>^1.4.2</code> ဆိုရင် <code>1.5.0</code> ထိ တက်ခွင့်ပေးတယ်။ Major တော့ အပြောင်းမခံဘူး။</li>
+                    <li class="fragment"><b>~ (Tilde)</b>: Patch version အသစ်ထွက်မှသာ လက်ခံမယ်။ ဥပမာ <code>~1.4.2</code> ဆိုရင် <code>1.4.3</code> အထိပဲ တက်ခွင့်ပေးတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 26 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-terminal"></i> npm scripts ဆိုတာ ဘာလဲ?</h2>
+                <p><code>package.json</code> ထဲမှာ ကိုယ်ပိုင် Command လေးတွေ ဖန်တီးထားလို့ရပါတယ်။</p>
+                <div class="code-box fragment">
+                    "scripts": {<br>
+                    &nbsp;&nbsp;"start": "node server.js",<br>
+                    &nbsp;&nbsp;"dev": "nodemon server.js"<br>
+                    }
+                </div>
+                <ul>
+                    <li class="fragment">ဒီတော့ <code>node server.js</code> လို့ အရှည်ကြီး ရိုက်နေမယ့်အစား <code>npm start</code> ဒါမှမဟုတ် <code>npm run dev</code> လို့ အလွယ်တကူ ရိုက်သုံးနိုင်ပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 27 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-fire"></i> နာမည်ကြီး npm packages များ</h2>
+                <p>ကမ္ဘာပေါ်မှာ နေ့စဉ်သုံးစွဲနေတဲ့ နာမည်ကြီး Package တွေ အများကြီးရှိပါတယ်။</p>
+                <ul>
+                    <li class="fragment"><b>React / Vue / Angular</b> (UI ဖန်တီးရန်)</li>
+                    <li class="fragment"><b>Express</b> (Node.js ဖြင့် Web Server ရေးရန်)</li>
+                    <li class="fragment"><b>Lodash</b> (JavaScript Data များကို လွယ်ကူစွာ ကိုင်တွယ်ရန်)</li>
+                    <li class="fragment"><b>Axios</b> (API များမှ Data လှမ်းယူရန်)</li>
+                </ul>
+            </section>
+
+            <!-- Slide 28 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-shield-alt"></i> လုံခြုံရေး (npm audit)</h2>
+                <p>မိမိသုံးထားတဲ့ Package တွေမှာ လုံခြုံရေး အားနည်းချက် (Vulnerabilities) ရှိမရှိ စစ်ဆေးပေးပါတယ်။</p>
+                <div class="code-box fragment">
+                    <span class="cmd">npm audit</span>
+                </div>
+                <ul>
+                    <li class="fragment">အကယ်၍ အားနည်းချက် တွေ့ရှိပါက <code>npm audit fix</code> ဆိုတဲ့ Command ကို ရိုက်ပြီး အလိုအလျောက် ပြင်ဆင်နိုင်ပါတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 29 -->
+            <section class="card" data-transition="slide">
+                <h2><i class="fas fa-gem"></i> npm အသုံးပြုခြင်းရဲ့ အကျိုးကျေးဇူးများ</h2>
+                <ul>
+                    <li class="fragment"><b>အချိန်ကုန်သက်သာခြင်း</b>: သူများရေးပြီးသား Code ကို ယူသုံးရုံပါပဲ။</li>
+                    <li class="fragment"><b>စနစ်ကျခြင်း</b>: Version တွေကို စနစ်တကျ ထိန်းချုပ်နိုင်တယ်။</li>
+                    <li class="fragment"><b>လွယ်ကူခြင်း</b>: Command တစ်ကြောင်းရိုက်ရုံနဲ့ လိုချင်တဲ့ Code တွေ ရောက်လာတယ်။</li>
+                    <li class="fragment"><b>Community ကြီးမားခြင်း</b>: ပြဿနာတက်ရင် ဖြေရှင်းနည်း အလွယ်တကူ ရှာတွေ့နိုင်တယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 30: Conclusion -->
+            <section class="cover-slide" data-transition="zoom">
+                <i class="fas fa-check-circle icon-large" style="color: #4CAF50;"></i>
+                <h2>နိဂုံးချုပ်</h2>
+                <p>npm ဟာ ယနေ့ခေတ် JavaScript Web Development လောကမှာ <span class="highlight">မသိမဖြစ် မသုံးမဖြစ်</span> လိုအပ်တဲ့ အရာတစ်ခု ဖြစ်ပါတယ်။</p>
+                <hr style="border: 1px solid #ddd; margin: 30px 0;">
+                <h3>မေးစရာများ ရှိပါသလား ခင်ဗျာ?</h3>
+                <p style="font-size: 0.6em; color: #888;">ကျေးဇူးတင်ပါတယ်</p>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script>
+        // Reveal.js Initialization
+        Reveal.initialize({
+            hash: true,                 // URL hash လေးတွေပြောင်းဖို့
+            transition: 'convex',       // Slide ပြောင်းတဲ့ Effect (convex, slide, fade, zoom)
+            backgroundTransition: 'fade',
+            slideNumber: true,          // Slide နံပါတ်ပြရန်
+            controlsTutorial: true,     // ဘယ်လိုသွားရမလဲဆိုတာ Arrow လေးတွေနဲ့ ပြရန်
+            fragments: true,            // စာကြောင်းတစ်ကြောင်းချင်းပေါ်ဖို့
+            center: true,               // စာတွေကို အလယ်မှာထားဖို့
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0
+        });
+    </script>
+</body>
+</html>
